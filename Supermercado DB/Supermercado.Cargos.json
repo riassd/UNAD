@@ -1,0 +1,165 @@
+[{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c042"
+  },
+  "id_cargo": 1,
+  "nombre_cargo": "Cajero",
+  "descripcion": "Atiende a los clientes en caja, realiza cobros y emite facturas.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1200000,
+  "requisitos": "Bachillerato completo, buena atención al cliente, manejo de caja registradora"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c043"
+  },
+  "id_cargo": 2,
+  "nombre_cargo": "Reponedor",
+  "descripcion": "Organiza y rellena los estantes con productos.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1100000,
+  "requisitos": "Disponibilidad física, capacidad para trabajar en equipo"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c044"
+  },
+  "id_cargo": 3,
+  "nombre_cargo": "Carnicero",
+  "descripcion": "Atiende el mostrador de carnes, corta y empaca productos cárnicos.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1300000,
+  "requisitos": "Conocimientos en cortes de carne, manejo de herramientas de corte"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c045"
+  },
+  "id_cargo": 4,
+  "nombre_cargo": "Pescadería",
+  "descripcion": "Atiende el mostrador de pescados y mariscos, limpia y prepara productos.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1350000,
+  "requisitos": "Conocimientos en productos del mar, manejo de herramientas de limpieza"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c046"
+  },
+  "id_cargo": 5,
+  "nombre_cargo": "Frutero",
+  "descripcion": "Selecciona, pesa y empaca frutas y verduras.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1150000,
+  "requisitos": "Conocimiento de frutas y verduras, cuidado en la manipulación de productos"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c047"
+  },
+  "id_cargo": 6,
+  "nombre_cargo": "Panadero",
+  "descripcion": "Prepara y hornea diferentes tipos de pan y productos de panadería.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1250000,
+  "requisitos": "Conocimientos en panadería, manejo de hornos"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c048"
+  },
+  "id_cargo": 7,
+  "nombre_cargo": "Encargado de almacén",
+  "descripcion": "Gestiona el inventario, recibe y despacha productos.",
+  "nivel_jerarquico": 2,
+  "salario_base": 1500000,
+  "requisitos": "Experiencia en logística, manejo de sistemas de inventario"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c049"
+  },
+  "id_cargo": 8,
+  "nombre_cargo": "Jefe de sección de lácteos",
+  "descripcion": "Supervisa la sección de lácteos, garantiza la calidad y rotación de productos.",
+  "nivel_jerarquico": 2,
+  "salario_base": 1400000,
+  "requisitos": "Conocimientos en productos lácteos, liderazgo"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c04a"
+  },
+  "id_cargo": 9,
+  "nombre_cargo": "Limpiador",
+  "descripcion": "Mantiene limpias las instalaciones del supermercado.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1000000,
+  "requisitos": "Disponibilidad para realizar tareas físicas"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c04b"
+  },
+  "id_cargo": 10,
+  "nombre_cargo": "Seguridad",
+  "descripcion": "Vigila las instalaciones y garantiza la seguridad de empleados y clientes.",
+  "nivel_jerarquico": 2,
+  "salario_base": 1350000,
+  "requisitos": "Cursos de seguridad, manejo de sistemas de vigilancia"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c04c"
+  },
+  "id_cargo": 11,
+  "nombre_cargo": "Asesor de ventas",
+  "descripcion": "Brinda asesoramiento a los clientes sobre productos específicos.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1200000,
+  "requisitos": "Buenas habilidades de comunicación, conocimiento de productos"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c04d"
+  },
+  "id_cargo": 12,
+  "nombre_cargo": "Auxiliar de bodega",
+  "descripcion": "Asiste al encargado de almacén en las tareas diarias.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1100000,
+  "requisitos": "Disponibilidad física, capacidad para trabajar en equipo"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c04e"
+  },
+  "id_cargo": 13,
+  "nombre_cargo": "Jefe de turno",
+  "descripcion": "Supervisa las operaciones del supermercado durante su turno.",
+  "nivel_jerarquico": 2,
+  "salario_base": 1450000,
+  "requisitos": "Experiencia en supervisión, liderazgo"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c04f"
+  },
+  "id_cargo": 14,
+  "nombre_cargo": "Control de calidad",
+  "descripcion": "Verifica la calidad de los productos recibidos y en exhibición.",
+  "nivel_jerarquico": 2,
+  "salario_base": 1300000,
+  "requisitos": "Conocimientos en normas de calidad, atención al detalle"
+},
+{
+  "_id": {
+    "$oid": "67437e153fa9d04cb609c050"
+  },
+  "id_cargo": 15,
+  "nombre_cargo": "Auxiliar administrativo",
+  "descripcion": "Realiza tareas administrativas como facturación, gestión de documentos.",
+  "nivel_jerarquico": 1,
+  "salario_base": 1150000,
+  "requisitos": "Manejo de herramientas ofimáticas"
+}]

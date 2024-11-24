@@ -1,0 +1,720 @@
+[{
+  "_id": 1,
+  "Nombre": "Manzanas",
+  "Precio": 1000,
+  "Cantidad": 50
+},
+{
+  "_id": 2,
+  "Nombre": "Bananas",
+  "Precio": 800,
+  "Cantidad": 30
+},
+{
+  "_id": 3,
+  "Nombre": "Naranjas",
+  "Precio": 900,
+  "Cantidad": 45
+},
+{
+  "_id": 4,
+  "Nombre": "Peras",
+  "Precio": 1200,
+  "Cantidad": 60
+},
+{
+  "_id": 5,
+  "Nombre": "Uvas",
+  "Precio": 1500,
+  "Cantidad": 25
+},
+{
+  "_id": 6,
+  "Nombre": "Cerezas",
+  "Precio": 2000,
+  "Cantidad": 15
+},
+{
+  "_id": 7,
+  "Nombre": "Sandías",
+  "Precio": 500,
+  "Cantidad": 100
+},
+{
+  "_id": 8,
+  "Nombre": "Melones",
+  "Precio": 700,
+  "Cantidad": 80
+},
+{
+  "_id": 9,
+  "Nombre": "Paltas",
+  "Precio": 1800,
+  "Cantidad": 35
+},
+{
+  "_id": 10,
+  "Nombre": "Piñas",
+  "Precio": 1100,
+  "Cantidad": 40
+},
+{
+  "_id": 11,
+  "Nombre": "Tomates",
+  "Precio": 600,
+  "Cantidad": 120
+},
+{
+  "_id": 12,
+  "Nombre": "Pepinos",
+  "Precio": 400,
+  "Cantidad": 150
+},
+{
+  "_id": 13,
+  "Nombre": "Lechuga",
+  "Precio": 300,
+  "Cantidad": 200
+},
+{
+  "_id": 14,
+  "Nombre": "Zanahorias",
+  "Precio": 250,
+  "Cantidad": 250
+},
+{
+  "_id": 15,
+  "Nombre": "Cebolla",
+  "Precio": 200,
+  "Cantidad": 300
+},
+{
+  "_id": 16,
+  "Nombre": "Papas",
+  "Precio": 150,
+  "Cantidad": 400
+},
+{
+  "_id": 17,
+  "Nombre": "Arroz",
+  "Precio": 350,
+  "Cantidad": 500
+},
+{
+  "_id": 18,
+  "Nombre": "Fideos",
+  "Precio": 400,
+  "Cantidad": 450
+},
+{
+  "_id": 19,
+  "Nombre": "Pan",
+  "Precio": 200,
+  "Cantidad": 500
+},
+{
+  "_id": 20,
+  "Nombre": "Leche",
+  "Precio": 300,
+  "Cantidad": 300
+},
+{
+  "_id": 21,
+  "Nombre": "Café",
+  "Precio": 500,
+  "Cantidad": 10
+},
+{
+  "_id": 22,
+  "Nombre": "Té",
+  "Precio": 300,
+  "Cantidad": 20
+},
+{
+  "_id": 23,
+  "Nombre": "Azúcar",
+  "Precio": 150,
+  "Cantidad": 500
+},
+{
+  "_id": 24,
+  "Nombre": "Sal",
+  "Precio": 50,
+  "Cantidad": 1000
+},
+{
+  "_id": 25,
+  "Nombre": "Aceite",
+  "Precio": 350,
+  "Cantidad": 50
+},
+{
+  "_id": 26,
+  "Nombre": "Arroz integral",
+  "Precio": 400,
+  "Cantidad": 400
+},
+{
+  "_id": 27,
+  "Nombre": "Avena",
+  "Precio": 300,
+  "Cantidad": 300
+},
+{
+  "_id": 28,
+  "Nombre": "Harina",
+  "Precio": 200,
+  "Cantidad": 500
+},
+{
+  "_id": 29,
+  "Nombre": "Detergente",
+  "Precio": 250,
+  "Cantidad": 100
+},
+{
+  "_id": 30,
+  "Nombre": "Jabón",
+  "Precio": 150,
+  "Cantidad": 200
+},
+{
+  "_id": 31,
+  "Nombre": "Shampoo",
+  "Precio": 300,
+  "Cantidad": 150
+},
+{
+  "_id": 32,
+  "Nombre": "Acondicionador",
+  "Precio": 350,
+  "Cantidad": 120
+},
+{
+  "_id": 33,
+  "Nombre": "Papel higiénico",
+  "Precio": 200,
+  "Cantidad": 50
+},
+{
+  "_id": 34,
+  "Nombre": "Servilletas",
+  "Precio": 100,
+  "Cantidad": 200
+},
+{
+  "_id": 35,
+  "Nombre": "Bolsas de basura",
+  "Precio": 150,
+  "Cantidad": 100
+},
+{
+  "_id": 36,
+  "Nombre": "Pasta de dientes",
+  "Precio": 120,
+  "Cantidad": 150
+},
+{
+  "_id": 37,
+  "Nombre": "Cepillo de dientes",
+  "Precio": 80,
+  "Cantidad": 200
+},
+{
+  "_id": 38,
+  "Nombre": "Desodorante",
+  "Precio": 180,
+  "Cantidad": 100
+},
+{
+  "_id": 39,
+  "Nombre": "Galletas",
+  "Precio": 250,
+  "Cantidad": 300
+},
+{
+  "_id": 40,
+  "Nombre": "Chocolate",
+  "Precio": 300,
+  "Cantidad": 200
+},
+{
+  "_id": 41,
+  "Nombre": "Suavizante",
+  "Precio": 200,
+  "Cantidad": 150
+},
+{
+  "_id": 42,
+  "Nombre": "Limpiador multiusos",
+  "Precio": 300,
+  "Cantidad": 100
+},
+{
+  "_id": 43,
+  "Nombre": "Desinfectante",
+  "Precio": 250,
+  "Cantidad": 80
+},
+{
+  "_id": 44,
+  "Nombre": "Toallas de papel",
+  "Precio": 180,
+  "Cantidad": 120
+},
+{
+  "_id": 45,
+  "Nombre": "Jabón líquido",
+  "Precio": 150,
+  "Cantidad": 200
+},
+{
+  "_id": 46,
+  "Nombre": "Vinagre",
+  "Precio": 100,
+  "Cantidad": 250
+},
+{
+  "_id": 47,
+  "Nombre": "Mostaza",
+  "Precio": 120,
+  "Cantidad": 150
+},
+{
+  "_id": 48,
+  "Nombre": "Ketchup",
+  "Precio": 150,
+  "Cantidad": 200
+},
+{
+  "_id": 49,
+  "Nombre": "Mayonesa",
+  "Precio": 200,
+  "Cantidad": 150
+},
+{
+  "_id": 50,
+  "Nombre": "Conservas de atún",
+  "Precio": 180,
+  "Cantidad": 50
+},
+{
+  "_id": 51,
+  "Nombre": "Bombillas",
+  "Precio": 50,
+  "Cantidad": 20
+},
+{
+  "_id": 52,
+  "Nombre": "Pilas",
+  "Precio": 100,
+  "Cantidad": 50
+},
+{
+  "_id": 53,
+  "Nombre": "Papel aluminio",
+  "Precio": 80,
+  "Cantidad": 30
+},
+{
+  "_id": 54,
+  "Nombre": "Film plástico",
+  "Precio": 70,
+  "Cantidad": 40
+},
+{
+  "_id": 55,
+  "Nombre": "Bolsas de congelado",
+  "Precio": 60,
+  "Cantidad": 100
+},
+{
+  "_id": 56,
+  "Nombre": "Crema facial",
+  "Precio": 250,
+  "Cantidad": 50
+},
+{
+  "_id": 57,
+  "Nombre": "Loción corporal",
+  "Precio": 200,
+  "Cantidad": 80
+},
+{
+  "_id": 58,
+  "Nombre": "Protector solar",
+  "Precio": 300,
+  "Cantidad": 60
+},
+{
+  "_id": 59,
+  "Nombre": "Maquillaje",
+  "Precio": 400,
+  "Cantidad": 40
+},
+{
+  "_id": 60,
+  "Nombre": "Perfume",
+  "Precio": 500,
+  "Cantidad": 30
+},
+{
+  "_id": 61,
+  "Nombre": "Café en cápsulas",
+  "Precio": 400,
+  "Cantidad": 20
+},
+{
+  "_id": 62,
+  "Nombre": "Té matcha",
+  "Precio": 350,
+  "Cantidad": 15
+},
+{
+  "_id": 63,
+  "Nombre": "Semillas de chía",
+  "Precio": 300,
+  "Cantidad": 250
+},
+{
+  "_id": 64,
+  "Nombre": "Avena en hojuelas",
+  "Precio": 250,
+  "Cantidad": 500
+},
+{
+  "_id": 65,
+  "Nombre": "Frutos secos mixtos",
+  "Precio": 400,
+  "Cantidad": 200
+},
+{
+  "_id": 66,
+  "Nombre": "Galletas integrales",
+  "Precio": 280,
+  "Cantidad": 300
+},
+{
+  "_id": 67,
+  "Nombre": "Yogurt griego",
+  "Precio": 220,
+  "Cantidad": 150
+},
+{
+  "_id": 68,
+  "Nombre": "Queso cottage",
+  "Precio": 250,
+  "Cantidad": 180
+},
+{
+  "_id": 69,
+  "Nombre": "Leche de almendras",
+  "Precio": 300,
+  "Cantidad": 120
+},
+{
+  "_id": 70,
+  "Nombre": "Papas fritas saludables",
+  "Precio": 200,
+  "Cantidad": 250
+},
+{
+  "_id": 71,
+  "Nombre": "Barritas energéticas",
+  "Precio": 180,
+  "Cantidad": 150
+},
+{
+  "_id": 72,
+  "Nombre": "Gel antibacterial",
+  "Precio": 120,
+  "Cantidad": 100
+},
+{
+  "_id": 73,
+  "Nombre": "Toallitas húmedas para bebé",
+  "Precio": 150,
+  "Cantidad": 80
+},
+{
+  "_id": 74,
+  "Nombre": "Pañales ecológicos",
+  "Precio": 300,
+  "Cantidad": 50
+},
+{
+  "_id": 75,
+  "Nombre": "Shampoo seco",
+  "Precio": 200,
+  "Cantidad": 70
+},
+{
+  "_id": 76,
+  "Nombre": "Cepillo de dientes eléctrico",
+  "Precio": 450,
+  "Cantidad": 30
+},
+{
+  "_id": 77,
+  "Nombre": "Hilo dental",
+  "Precio": 80,
+  "Cantidad": 200
+},
+{
+  "_id": 78,
+  "Nombre": "Enjuague bucal",
+  "Precio": 100,
+  "Cantidad": 150
+},
+{
+  "_id": 79,
+  "Nombre": "Crema solar facial",
+  "Precio": 250,
+  "Cantidad": 60
+},
+{
+  "_id": 80,
+  "Nombre": "Lentes de contacto",
+  "Precio": 350,
+  "Cantidad": 20
+},
+{
+  "_id": 81,
+  "Nombre": "Frutos rojos congelados",
+  "Precio": 350,
+  "Cantidad": 200
+},
+{
+  "_id": 82,
+  "Nombre": "Pan integral",
+  "Precio": 220,
+  "Cantidad": 300
+},
+{
+  "_id": 83,
+  "Nombre": "Harina de avena",
+  "Precio": 280,
+  "Cantidad": 400
+},
+{
+  "_id": 84,
+  "Nombre": "Miel",
+  "Precio": 300,
+  "Cantidad": 150
+},
+{
+  "_id": 85,
+  "Nombre": "Limpiador de horno",
+  "Precio": 250,
+  "Cantidad": 50
+},
+{
+  "_id": 86,
+  "Nombre": "Suavizante de telas concentrado",
+  "Precio": 300,
+  "Cantidad": 100
+},
+{
+  "_id": 87,
+  "Nombre": "Detergente para ropa delicada",
+  "Precio": 280,
+  "Cantidad": 80
+},
+{
+  "_id": 88,
+  "Nombre": "Limpiador multiusos para pisos",
+  "Precio": 220,
+  "Cantidad": 120
+},
+{
+  "_id": 89,
+  "Nombre": "Desodorante natural en roll-on",
+  "Precio": 200,
+  "Cantidad": 150
+},
+{
+  "_id": 90,
+  "Nombre": "Jabón líquido antibacterial para manos",
+  "Precio": 180,
+  "Cantidad": 200
+},
+{
+  "_id": 91,
+  "Nombre": "Shampoo para cabello graso y cuero cabelludo",
+  "Precio": 250,
+  "Cantidad": 100
+},
+{
+  "_id": 92,
+  "Nombre": "Acondicionador sin enjuague para todo tipo de cabello",
+  "Precio": 200,
+  "Cantidad": 80
+},
+{
+  "_id": 93,
+  "Nombre": "Pasta dental blanqueadora con flúor",
+  "Precio": 150,
+  "Cantidad": 120
+},
+{
+  "_id": 94,
+  "Nombre": "Cepillo dental de bambú suave",
+  "Precio": 180,
+  "Cantidad": 150
+},
+{
+  "_id": 95,
+  "Nombre": "Hilo dental con fluoruro sabor menta",
+  "Precio": 100,
+  "Cantidad": 200
+},
+{
+  "_id": 96,
+  "Nombre": "Crema hidratante para manos",
+  "Precio": 120,
+  "Cantidad": 180
+},
+{
+  "_id": 97,
+  "Nombre": "Bálsamo labial con protección solar SPF 30",
+  "Precio": 100,
+  "Cantidad": 150
+},
+{
+  "_id": 98,
+  "Nombre": "Maquillaje mineral en polvo compacto",
+  "Precio": 300,
+  "Cantidad": 80
+},
+{
+  "_id": 99,
+  "Nombre": "Desmaquillante bifásico para ojos",
+  "Precio": 250,
+  "Cantidad": 100
+},
+{
+  "_id": 100,
+  "Nombre": "Perfume para el hogar con aroma a lavanda",
+  "Precio": 280,
+  "Cantidad": 70
+},
+{
+  "_id": 101,
+  "Nombre": "Velas aromáticas",
+  "Precio": 200,
+  "Cantidad": 120
+},
+{
+  "_id": 102,
+  "Nombre": "Incienso",
+  "Precio": 150,
+  "Cantidad": 100
+},
+{
+  "_id": 103,
+  "Nombre": "Difusor de aromas",
+  "Precio": 300,
+  "Cantidad": 80
+},
+{
+  "_id": 104,
+  "Nombre": "Plantas de interior",
+  "Precio": 250,
+  "Cantidad": 50
+},
+{
+  "_id": 105,
+  "Nombre": "Semillas para huerto urbano",
+  "Precio": 180,
+  "Cantidad": 100
+},
+{
+  "_id": 106,
+  "Nombre": "Libros de cocina",
+  "Precio": 200,
+  "Cantidad": 80
+},
+{
+  "_id": 107,
+  "Nombre": "Juegos de mesa",
+  "Precio": 300,
+  "Cantidad": 60
+},
+{
+  "_id": 108,
+  "Nombre": "Películas en DVD",
+  "Precio": 250,
+  "Cantidad": 100
+},
+{
+  "_id": 109,
+  "Nombre": "Libros para colorear",
+  "Precio": 150,
+  "Cantidad": 120
+},
+{
+  "_id": 110,
+  "Nombre": "Materiales de manualidades",
+  "Precio": 200,
+  "Cantidad": 100
+},
+{
+  "_id": 111,
+  "Nombre": "Bolsas reutilizables",
+  "Precio": 120,
+  "Cantidad": 150
+},
+{
+  "_id": 112,
+  "Nombre": "Botellas de agua reutilizables",
+  "Precio": 150,
+  "Cantidad": 200
+},
+{
+  "_id": 113,
+  "Nombre": "Cajas organizadoras",
+  "Precio": 180,
+  "Cantidad": 180
+},
+{
+  "_id": 114,
+  "Nombre": "Cestas de mimbre",
+  "Precio": 250,
+  "Cantidad": 150
+},
+{
+  "_id": 115,
+  "Nombre": "Adornos decorativos",
+  "Precio": 200,
+  "Cantidad": 120
+},
+{
+  "_id": 116,
+  "Nombre": "Cuadros",
+  "Precio": 300,
+  "Cantidad": 100
+},
+{
+  "_id": 117,
+  "Nombre": "Almohadas decorativas",
+  "Precio": 250,
+  "Cantidad": 80
+},
+{
+  "_id": 118,
+  "Nombre": "Mantas",
+  "Precio": 300,
+  "Cantidad": 60
+},
+{
+  "_id": 119,
+  "Nombre": "Lámparas",
+  "Precio": 400,
+  "Cantidad": 50
+},
+{
+  "_id": 120,
+  "Nombre": "Relojes de pared",
+  "Precio": 250,
+  "Cantidad": 40
+}]

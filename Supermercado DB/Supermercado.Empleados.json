@@ -1,0 +1,280 @@
+[{
+  "_id": 1,
+  "Nombres": "Ana Gabriela",
+  "Apellidos": "Pérez Martínez",
+  "Edad": 30,
+  "nombre_cargo": "Auxiliar administrativo"
+},
+{
+  "_id": 2,
+  "Nombres": "Carlos Eduardo",
+  "Apellidos": "López Sánchez",
+  "Edad": 25,
+  "nombre_cargo": "Cajero"
+},
+{
+  "_id": 3,
+  "Nombres": "María Fernanda",
+  "Apellidos": "Gómez Rodríguez",
+  "Edad": 28,
+  "nombre_cargo": "Reponedor"
+},
+{
+  "_id": 4,
+  "Nombres": "Luis Felipe",
+  "Apellidos": "Pérez Ramírez",
+  "Edad": 35,
+  "nombre_cargo": "Carnicero"
+},
+{
+  "_id": 5,
+  "Nombres": "Andrea Patricia",
+  "Apellidos": "Ruiz Castro",
+  "Edad": 27,
+  "nombre_cargo": "Pescadería"
+},
+{
+  "_id": 6,
+  "Nombres": "Diego Alejandro",
+  "Apellidos": "Martínez Vega",
+  "Edad": 29,
+  "nombre_cargo": "Frutero"
+},
+{
+  "_id": 7,
+  "Nombres": "Camila Isabel",
+  "Apellidos": "Mendoza López",
+  "Edad": 31,
+  "nombre_cargo": "Panadero"
+},
+{
+  "_id": 8,
+  "Nombres": "Juan Sebastián",
+  "Apellidos": "Ortiz Paredes",
+  "Edad": 32,
+  "nombre_cargo": "Encargado de almacén"
+},
+{
+  "_id": 9,
+  "Nombres": "Laura Natalia",
+  "Apellidos": "Cortés Peña",
+  "Edad": 26,
+  "nombre_cargo": "Jefe de sección de lácteos"
+},
+{
+  "_id": 10,
+  "Nombres": "Pedro Javier",
+  "Apellidos": "Sosa Contreras",
+  "Edad": 38,
+  "nombre_cargo": "Limpiador"
+},
+{
+  "_id": 11,
+  "Nombres": "Diana Carolina",
+  "Apellidos": "Herrera Villalobos",
+  "Edad": 33,
+  "nombre_cargo": "Seguridad"
+},
+{
+  "_id": 12,
+  "Nombres": "Andrés Mauricio",
+  "Apellidos": "Silva Romero",
+  "Edad": 24,
+  "nombre_cargo": "Asesor de ventas"
+},
+{
+  "_id": 13,
+  "Nombres": "Paola Andrea",
+  "Apellidos": "Acosta Valencia",
+  "Edad": 29,
+  "nombre_cargo": "Auxiliar de bodega"
+},
+{
+  "_id": 14,
+  "Nombres": "Ricardo Emilio",
+  "Apellidos": "Cárdenas Morales",
+  "Edad": 34,
+  "nombre_cargo": "Jefe de turno"
+},
+{
+  "_id": 15,
+  "Nombres": "Valentina Sofía",
+  "Apellidos": "Navarro Beltrán",
+  "Edad": 28,
+  "nombre_cargo": "Control de calidad"
+},
+{
+  "_id": 16,
+  "Nombres": "Tomás Nicolás",
+  "Apellidos": "Galindo Reyes",
+  "Edad": 36,
+  "nombre_cargo": "Carnicero"
+},
+{
+  "_id": 17,
+  "Nombres": "Sofía Luciana",
+  "Apellidos": "Palacios Duarte",
+  "Edad": 25,
+  "nombre_cargo": "Pescadería"
+},
+{
+  "_id": 18,
+  "Nombres": "Emilio Adrián",
+  "Apellidos": "Quintero Arévalo",
+  "Edad": 30,
+  "nombre_cargo": "Frutero"
+},
+{
+  "_id": 19,
+  "Nombres": "Luisa Fernanda",
+  "Apellidos": "Ortega Castillo",
+  "Edad": 29,
+  "nombre_cargo": "Panadero"
+},
+{
+  "_id": 20,
+  "Nombres": "Felipe Alejandro",
+  "Apellidos": "Ramírez Pineda",
+  "Edad": 40,
+  "nombre_cargo": "Encargado de almacén"
+},
+{
+  "_id": 22,
+  "Nombres": "Fernando David",
+  "Apellidos": "Torres Jiménez",
+  "Edad": 35,
+  "nombre_cargo": "Control de calidad"
+},
+{
+  "_id": 23,
+  "Nombres": "Juliana Andrea",
+  "Apellidos": "Salazar Gutiérrez",
+  "Edad": 29,
+  "nombre_cargo": "Auxiliar administrativo"
+},
+{
+  "_id": 24,
+  "Nombres": "Mateo Ignacio",
+  "Apellidos": "Lara Lozano",
+  "Edad": 26,
+  "nombre_cargo": "Cajero"
+},
+{
+  "_id": 25,
+  "Nombres": "Laura Gabriela",
+  "Apellidos": "Hernández Serrano",
+  "Edad": 28,
+  "nombre_cargo": "Reponedor"
+},
+{
+  "_id": 26,
+  "Nombres": "Andrés Felipe",
+  "Apellidos": "García Valencia",
+  "Edad": 34,
+  "nombre_cargo": "Carnicero"
+},
+{
+  "_id": 27,
+  "Nombres": "Santiago Tomás",
+  "Apellidos": "Mora Villalobos",
+  "Edad": 31,
+  "nombre_cargo": "Encargado de almacén"
+},
+{
+  "_id": 28,
+  "Nombres": "Natalia Isabel",
+  "Apellidos": "Guzmán Trujillo",
+  "Edad": 33,
+  "nombre_cargo": "Jefe de sección de lácteos"
+},
+{
+  "_id": 29,
+  "Nombres": "Pablo Nicolás",
+  "Apellidos": "Rico Torres",
+  "Edad": 37,
+  "nombre_cargo": "Limpiador"
+},
+{
+  "_id": 30,
+  "Nombres": "Sara Lucía",
+  "Apellidos": "Montoya Castaño",
+  "Edad": 32,
+  "nombre_cargo": "Seguridad"
+},
+{
+  "_id": 31,
+  "Nombres": "Esteban Emilio",
+  "Apellidos": "Prieto Salinas",
+  "Edad": 27,
+  "nombre_cargo": "Asesor de ventas"
+},
+{
+  "_id": 32,
+  "Nombres": "Mariana Sofía",
+  "Apellidos": "Peña Vázquez",
+  "Edad": 25,
+  "nombre_cargo": "Auxiliar de bodega"
+},
+{
+  "_id": 33,
+  "Nombres": "Ángel Leonardo",
+  "Apellidos": "Espinosa Ruiz",
+  "Edad": 30,
+  "nombre_cargo": "Panadero"
+},
+{
+  "_id": 34,
+  "Nombres": "Isabella Alejandra",
+  "Apellidos": "Reyes Delgado",
+  "Edad": 29,
+  "nombre_cargo": "Frutero"
+},
+{
+  "_id": 35,
+  "Nombres": "Samuel Eduardo",
+  "Apellidos": "Arévalo Figueroa",
+  "Edad": 24,
+  "nombre_cargo": "Pescadería"
+},
+{
+  "_id": 36,
+  "Nombres": "Victoria Elena",
+  "Apellidos": "Suárez Márquez",
+  "Edad": 34,
+  "nombre_cargo": "Carnicero"
+},
+{
+  "_id": 37,
+  "Nombres": "Felipe Alejandro",
+  "Apellidos": "Alvarado Vargas",
+  "Edad": 31,
+  "nombre_cargo": "Reponedor"
+},
+{
+  "_id": 38,
+  "Nombres": "Marta Liliana",
+  "Apellidos": "Vélez Roldán",
+  "Edad": 40,
+  "nombre_cargo": "Control de calidad"
+},
+{
+  "_id": 39,
+  "Nombres": "Camilo Andrés",
+  "Apellidos": "Muñoz Franco",
+  "Edad": 36,
+  "nombre_cargo": "Jefe de turno"
+},
+{
+  "_id": 40,
+  "Nombres": "Daniel Santiago",
+  "Apellidos": "Zapata Restrepo",
+  "Edad": 25,
+  "nombre_cargo": "Auxiliar administrativo"
+},
+{
+  "_id": 41,
+  "Nombres": "Juana Gabriela",
+  "Apellidos": "Pérez Martínez",
+  "Edad": 30,
+  "Nombre_Cargo": "Auxiliar administrativo"
+}]
