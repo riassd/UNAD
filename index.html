@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Tarjetas de Reconocimiento · Sinergy Soluciones Integrales</title>
+<style>
+  /* ============================================================
+     PALETA CORPORATIVA SINERGY
+     Azul    #004581
+     Naranja #F28C00
+     Blanco  #FFFFFF
+     Gris     #666666
+     ============================================================ */
+  :root {
+    --azul:    #004581;
+    --naranja: #F28C00;
+    --blanco:  #FFFFFF;
+    --gris:    #666666;
+    --gris-claro: #f2f4f7;
+
+    /* Ajusta cuántas tarjetas quieres por hoja:
+       2 columnas x 4 filas = 8 tarjetas
+       2 columnas x 5 filas = 10 tarjetas (reduce el alto de --card-h) */
+    --cols: 2;
+    --card-h: 62mm;   /* alto de cada tarjeta al imprimir */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--gris-claro);
+    color: var(--gris);
+    -webkit-print-color-adjust: exact;   /* fuerza colores/degradados al imprimir */
+    print-color-adjust: exact;
+  }
+
+  /* ============================================================
+     BARRA DE HERRAMIENTAS (solo pantalla, se oculta al imprimir)
+     ============================================================ */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--azul);
+    color: var(--blanco);
+    padding: 14px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  }
+  .toolbar h1 {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .3px;
+  }
+  .toolbar h1 span { color: var(--naranja); }
+  .toolbar .spacer { flex: 1; }
+  .toolbar .hint {
+    font-size: 13px;
+    opacity: .85;
+  }
+  .toolbar .hint kbd {
+    background: rgba(255,255,255,.18);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: inherit;
+  }
+  .btn-print {
+    background: var(--naranja);
+    color: var(--blanco);
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform .1s ease, filter .15s ease;
+  }
+  .btn-print:hover { filter: brightness(1.05); }
+  .btn-print:active { transform: scale(.97); }
+
+  .meta {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gris);
+    padding: 10px;
+  }
+  .meta b { color: var(--azul); }
+
+  /* ============================================================
+     GRID DE TARJETAS (pantalla)
+     ============================================================ */
+  .page {
+    max-width: 900px;
+    margin: 18px auto 40px;
+    padding: 0 16px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: 10mm;
+  }
+
+  /* ============================================================
+     ESTILO DE LA TARJETA (Flashcard corporativa)
+     ============================================================ */
+  .card {
+    position: relative;
+    background: var(--blanco);
+    border: 1px solid #e2e6ea;
+    border-radius: 12px;
+    /* Detalle superior en Azul corporativo */
+    border-top: 8px solid var(--azul);
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    padding: 18px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: var(--card-h);
+    overflow: hidden;
+  }
+  /* Acento diagonal sutil en naranja (esquina superior derecha) */
+  .card::after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 70px;
+    height: 70px;
+    background: var(--naranja);
+    opacity: .12;
+    transform: rotate(45deg);
+  }
+
+  .card .categoria {
+    color: var(--naranja);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+  .card .categoria::before {
+    content: "★ ";
+    font-size: 12px;
+  }
+
+  .card .titulo {
+    color: var(--gris);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: .7;
+  }
+
+  .card .texto {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--azul);
+    font-size: 19px;
+    line-height: 1.35;
+    font-weight: 600;
+    padding: 6px 4px;
+  }
+
+  /* Pie de la tarjeta: línea + logo */
+  .card .pie {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #eceff2;
+    padding-top: 10px;
+    margin-top: 8px;
+  }
+  .card .pie .firma {
+    font-size: 11px;
+    color: var(--gris);
+  }
+  .card .pie .firma b { color: var(--azul); }
+  .card .pie img.logo {
+    height: 34px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+  }
+  /* Si la imagen del logo no carga, se muestra este texto de respaldo */
+  .card .pie img.logo {
+    font-size: 11px;
+    color: var(--azul);
+  }
+
+  /* ============================================================
+     REGLAS DE IMPRESIÓN  →  Ctrl + P
+     ============================================================ */
+  @media print {
+    @page {
+      size: A4;            /* cambia a "letter" si usas tamaño Carta */
+      margin: 10mm;        /* margen de corte de la hoja */
+    }
+
+    body { background: var(--blanco); }
+    .toolbar, .meta { display: none !important; }
+
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grid {
+      gap: 6mm;            /* separación entre tarjetas (guía de corte) */
+    }
+
+    .card {
+      /* EVITA que una tarjeta se parta al cambiar de página */
+      break-inside: avoid;
+      page-break-inside: avoid;
+      box-shadow: none;
+      border: 1px dashed #c9ced3;   /* guía de corte tenue */
+      border-top: 8px solid var(--azul);
+      min-height: var(--card-h);
+      border-radius: 10px;
+    }
+
+    /* Refuerza que los colores/acentos se impriman */
+    .card::after { opacity: .14; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR (no se imprime) -->
+  <div class="toolbar">
+    <h1>Reconocimientos <span>Sinergy</span> · Soluciones Integrales</h1>
+    <div class="spacer"></div>
+    <span class="hint">Exporta con <kbd>Ctrl</kbd> + <kbd>P</kbd> → Guardar como PDF</span>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+  </div>
+
+  <p class="meta">Tarjetas generadas: <b id="contador">0</b> · Configura columnas y alto en el bloque <code>:root</code> del CSS.</p>
+
+  <!-- CONTENEDOR DONDE JS INSERTA LAS TARJETAS -->
+  <div class="page">
+    <div class="grid" id="grid"></div>
+  </div>
+
+<script>
+  /* ============================================================
+     1) RUTA DE TU LOGO LOCAL
+        Coloca aquí la ruta de tu archivo (misma carpeta que este HTML).
+        Ej: "logo-sinergy.png"  ó  "img/logo-sinergy.png"
+     ============================================================ */
+  const LOGO = "logo-sinergy.png";
+
+  /* ============================================================
+     2) TUS FRASES  →  aquí pegas tus 100+ reconocimientos.
+        Formato: { categoria: "...", texto: "..." }
+        (Dejé 3 de ejemplo)
+     ============================================================ */
+  const reconocimientos = [
+    { categoria: "Trabajo en Equipo", texto: "Eres un gran compañero" },
+    { categoria: "Actitud Positiva",  texto: "Tu energía contagia al equipo" },
+    { categoria: "Compromiso",        texto: "Siempre das la milla extra" },
+    // ...pega el resto de tus frases aquí abajo, separadas por coma...
+  ];
+
+  /* ============================================================
+     3) RENDERIZADO AUTOMÁTICO DE LAS TARJETAS
+     ============================================================ */
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function render() {
+    const grid = document.getElementById("grid");
+    grid.innerHTML = reconocimientos.map(function (r) {
+      return (
+        '<div class="card">' +
+          '<div class="categoria">' + escapeHTML(r.categoria) + '</div>' +
+          '<div class="titulo">Reconocimiento</div>' +
+          '<div class="texto">' + escapeHTML(r.texto) + '</div>' +
+          '<div class="pie">' +
+            '<span class="firma">Sinergy · <b>Soluciones Integrales</b></span>' +
+            '<img class="logo" src="' + LOGO + '" alt="Sinergy" ' +
+                 'onerror="this.style.display=\'none\'">' +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+
+    document.getElementById("contador").textContent = reconocimientos.length;
+  }
+
+  render();
+</script>
+</body>
+</html>
