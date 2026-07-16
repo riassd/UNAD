@@ -233,16 +233,10 @@
     </div>
     <div class="spacer"></div>
 
-    <label class="toggle" title="Mostrar u ocultar el nombre del colaborador">
-      <input type="checkbox" id="toggleNombre" checked onchange="toggleNombre(this)">
+    <label class="toggle" title="Mostrar u ocultar el nombre y la categoría">
+      <input type="checkbox" id="toggleDatos" checked onchange="toggleDatos(this)">
       <span class="via"></span>
-      <span>Mostrar nombre</span>
-    </label>
-
-    <label class="toggle" title="Mostrar u ocultar la categoría">
-      <input type="checkbox" id="toggleCategoria" checked onchange="toggleCategoria(this)">
-      <span class="via"></span>
-      <span>Mostrar categoría</span>
+      <span>Mostrar nombre y categoría</span>
     </label>
 
     <label class="btn btn-csv" for="csvInput">📄 Cargar CSV</label>
@@ -395,10 +389,9 @@
   /* ============================================================
      TOGGLE: mostrar / ocultar el nombre en todas las tarjetas
      ============================================================ */
-  function toggleNombre(input) {
+  /* Un solo toggle controla nombre + categoría a la vez */
+  function toggleDatos(input) {
     document.body.classList.toggle("sin-nombre", !input.checked);
-  }
-  function toggleCategoria(input) {
     document.body.classList.toggle("sin-categoria", !input.checked);
   }
 
