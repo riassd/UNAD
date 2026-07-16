@@ -1,0 +1,51 @@
+name: Deploy a GitHub Pages
+
+# Publica el generador de tarjetas (index.html + logos) en GitHub Pages
+# cada vez que se actualiza main. También se puede lanzar manualmente.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permisos que necesita el despliegue de Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un solo despliegue a la vez; no cancela el que esté en curso
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Preparar sitio (index.html + logos)
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp *.png _site/ 2>/dev/null || true
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefacto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
