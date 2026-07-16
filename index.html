@@ -157,12 +157,14 @@
     color: var(--gris-txt); font-size: 16px; line-height: 1.4; font-weight: 600;
     padding: 4px 8px 6px;
   }
-  /* Comillas decorativas en naranja */
-  .card .texto::before {
-    content: "\201C"; position: absolute; left: 2px; top: -6px;
-    font-family: Georgia, "Times New Roman", serif;
+  /* Comillas decorativas en naranja (apertura y cierre) */
+  .card .texto::before,
+  .card .texto::after {
+    position: absolute; font-family: Georgia, "Times New Roman", serif;
     font-size: 34px; color: var(--naranja); opacity: .35; line-height: 1;
   }
+  .card .texto::before { content: "\201C"; left: 2px;  top: -6px; }
+  .card .texto::after  { content: "\201D"; right: 2px; bottom: -14px; }
 
   /* -- Pie -- */
   .card .pie {
