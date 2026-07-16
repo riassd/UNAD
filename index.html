@@ -45,7 +45,7 @@
     z-index: 10;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
     background: var(--azul);
     color: var(--blanco);
@@ -69,34 +69,45 @@
     padding: 2px 6px;
     font-family: inherit;
   }
-  .btn-print {
-    background: var(--naranja);
-    color: var(--blanco);
+
+  /* Botones de la barra */
+  .btn {
     border: none;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    padding: 10px 22px;
+    padding: 10px 18px;
     border-radius: 8px;
     cursor: pointer;
     transition: transform .1s ease, filter .15s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
   }
-  .btn-print:hover { filter: brightness(1.05); }
-  .btn-print:active { transform: scale(.97); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:active { transform: scale(.97); }
+  .btn-print   { background: var(--naranja); color: var(--blanco); }
+  .btn-csv     { background: var(--blanco);  color: var(--azul); }
+  .btn-ghost   { background: rgba(255,255,255,.14); color: var(--blanco); }
+
+  /* input file oculto, activado por su <label class="btn"> */
+  #csvInput { display: none; }
 
   .meta {
     text-align: center;
     font-size: 13px;
     color: var(--gris);
-    padding: 10px;
+    padding: 10px 16px 0;
   }
   .meta b { color: var(--azul); }
+  .meta .aviso { color: var(--naranja); font-weight: 600; }
 
   /* ============================================================
      GRID DE TARJETAS (pantalla)
      ============================================================ */
   .page {
     max-width: 900px;
-    margin: 18px auto 40px;
+    margin: 14px auto 40px;
     padding: 0 16px;
   }
   .grid {
@@ -141,22 +152,33 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .card .categoria::before {
     content: "★ ";
     font-size: 12px;
   }
 
-  .card .titulo {
-    color: var(--gris);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    opacity: .7;
+  /* Nombre del colaborador reconocido */
+  .card .nombre {
+    color: var(--azul);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2px;
   }
+  .card .nombre small {
+    display: block;
+    color: var(--gris);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    opacity: .7;
+    margin-bottom: 2px;
+  }
+  /* Oculta el bloque de nombre si la fila no trae nombre */
+  .card .nombre:empty { display: none; }
 
   .card .texto {
     flex: 1;
@@ -164,14 +186,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--azul);
-    font-size: 19px;
+    color: var(--gris);
+    font-size: 18px;
     line-height: 1.35;
     font-weight: 600;
-    padding: 6px 4px;
+    padding: 8px 4px;
   }
 
-  /* Pie de la tarjeta: línea + logo */
+  /* Pie de la tarjeta: firma + logo */
   .card .pie {
     display: flex;
     align-items: center;
@@ -190,10 +212,7 @@
     width: auto;
     max-width: 120px;
     object-fit: contain;
-  }
-  /* Si la imagen del logo no carga, se muestra este texto de respaldo */
-  .card .pie img.logo {
-    font-size: 11px;
+    font-size: 11px;   /* respaldo de texto si el logo no carga */
     color: var(--azul);
   }
 
@@ -241,11 +260,22 @@
   <div class="toolbar">
     <h1>Reconocimientos <span>Sinergy</span> · Soluciones Integrales</h1>
     <div class="spacer"></div>
-    <span class="hint">Exporta con <kbd>Ctrl</kbd> + <kbd>P</kbd> → Guardar como PDF</span>
-    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+
+    <!-- Cargar CSV: el <label> dispara el <input type=file> oculto -->
+    <label class="btn btn-csv" for="csvInput">📄 Cargar CSV</label>
+    <input type="file" id="csvInput" accept=".csv,text/csv" onchange="cargarCSV(event)">
+
+    <!-- Plantilla de ejemplo para que sepan el formato -->
+    <button class="btn btn-ghost" onclick="descargarPlantilla()">⬇️ Plantilla CSV</button>
+
+    <span class="hint"><kbd>Ctrl</kbd>+<kbd>P</kbd> → Guardar como PDF</span>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
   </div>
 
-  <p class="meta">Tarjetas generadas: <b id="contador">0</b> · Configura columnas y alto en el bloque <code>:root</code> del CSS.</p>
+  <p class="meta">
+    Tarjetas generadas: <b id="contador">0</b> ·
+    <span id="fuente">Mostrando ejemplos. Carga tu CSV para generar todas.</span>
+  </p>
 
   <!-- CONTENEDOR DONDE JS INSERTA LAS TARJETAS -->
   <div class="page">
@@ -261,32 +291,158 @@
   const LOGO = "logo-sinergy.png";
 
   /* ============================================================
-     2) TUS FRASES  →  aquí pegas tus 100+ reconocimientos.
-        Formato: { categoria: "...", texto: "..." }
-        (Dejé 3 de ejemplo)
+     2) DATOS DE EJEMPLO (se muestran hasta que cargues un CSV)
+        Cada objeto = una tarjeta:  { nombre, categoria, texto }
      ============================================================ */
-  const reconocimientos = [
-    { categoria: "Trabajo en Equipo", texto: "Eres un gran compañero" },
-    { categoria: "Actitud Positiva",  texto: "Tu energía contagia al equipo" },
-    { categoria: "Compromiso",        texto: "Siempre das la milla extra" },
-    // ...pega el resto de tus frases aquí abajo, separadas por coma...
+  let reconocimientos = [
+    { nombre: "María López",  categoria: "Trabajo en Equipo", texto: "Eres un gran compañero" },
+    { nombre: "Carlos Ruiz",  categoria: "Actitud Positiva",  texto: "Tu energía contagia al equipo" },
+    { nombre: "Ana Torres",   categoria: "Compromiso",        texto: "Siempre das la milla extra" },
   ];
 
   /* ============================================================
-     3) RENDERIZADO AUTOMÁTICO DE LAS TARJETAS
+     3) UTILIDADES
      ============================================================ */
   function escapeHTML(str) {
-    return String(str)
+    return String(str == null ? "" : str)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
+  /* Parser de CSV robusto:
+     - Detecta el separador (coma o punto y coma, típico de Excel en español)
+     - Respeta campos entre comillas dobles ("texto, con coma")
+     - Soporta comillas escapadas ("") y saltos de línea dentro de comillas
+     - Ignora un BOM inicial si el archivo lo trae                          */
+  function parseCSV(text) {
+    text = text.replace(/^﻿/, "");           // quita BOM
+
+    // Detecta el delimitador mirando la primera línea (fuera de comillas)
+    const primeraLinea = text.split(/\r?\n/)[0] || "";
+    const comas = (primeraLinea.match(/,/g)  || []).length;
+    const puntoyComa = (primeraLinea.match(/;/g) || []).length;
+    const DELIM = puntoyComa > comas ? ";" : ",";
+
+    const filas = [];
+    let campo = "", fila = [], enComillas = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (enComillas) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { campo += '"'; i++; }  // comilla escapada
+          else enComillas = false;
+        } else campo += c;
+      } else {
+        if (c === '"') enComillas = true;
+        else if (c === DELIM) { fila.push(campo); campo = ""; }
+        else if (c === "\n") { fila.push(campo); filas.push(fila); fila = []; campo = ""; }
+        else if (c === "\r") { /* ignora */ }
+        else campo += c;
+      }
+    }
+    // último campo/fila si el archivo no termina en salto de línea
+    if (campo.length > 0 || fila.length > 0) { fila.push(campo); filas.push(fila); }
+
+    return filas.filter(f => f.some(v => String(v).trim() !== ""));  // sin filas vacías
+  }
+
+  /* Mapea encabezados flexibles a nuestras claves.
+     Acepta variantes con/ sin acento y sinónimos comunes. */
+  function indiceEncabezados(cabecera) {
+    const norm = s => String(s).trim().toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "");   // sin acentos
+    const idx = { nombre: -1, categoria: -1, texto: -1 };
+    cabecera.forEach((h, i) => {
+      const k = norm(h);
+      if (idx.nombre    < 0 && ["nombre","nombres","colaborador","empleado","name"].includes(k)) idx.nombre = i;
+      if (idx.categoria < 0 && ["categoria","categoría","category","tipo","valor"].includes(k)) idx.categoria = i;
+      if (idx.texto     < 0 && ["texto","frase","mensaje","reconocimiento","message","descripcion","descripción"].includes(k)) idx.texto = i;
+    });
+    return idx;
+  }
+
+  /* ============================================================
+     4) CARGA DE CSV (botón "Cargar CSV")
+     ============================================================ */
+  function cargarCSV(evento) {
+    const archivo = evento.target.files && evento.target.files[0];
+    if (!archivo) return;
+
+    const lector = new FileReader();
+    lector.onload = function (e) {
+      try {
+        const filas = parseCSV(e.target.result);
+        if (filas.length === 0) throw new Error("El archivo está vacío.");
+
+        const idx = indiceEncabezados(filas[0]);
+        let inicio = 1;   // asume que la primera fila es el encabezado
+
+        // Si no reconoció ningún encabezado, asume orden: nombre, categoria, texto
+        if (idx.nombre < 0 && idx.categoria < 0 && idx.texto < 0) {
+          idx.nombre = 0; idx.categoria = 1; idx.texto = 2;
+          inicio = 0;     // no había encabezado, usar también la primera fila
+        }
+
+        const datos = [];
+        for (let i = inicio; i < filas.length; i++) {
+          const f = filas[i];
+          const nombre    = idx.nombre    >= 0 ? (f[idx.nombre]    || "").trim() : "";
+          const categoria = idx.categoria >= 0 ? (f[idx.categoria] || "").trim() : "";
+          const texto     = idx.texto     >= 0 ? (f[idx.texto]     || "").trim() : "";
+          if (!nombre && !categoria && !texto) continue;  // fila vacía
+          datos.push({ nombre, categoria, texto });
+        }
+
+        if (datos.length === 0) throw new Error("No se encontraron filas con datos.");
+
+        reconocimientos = datos;
+        render();
+        document.getElementById("fuente").innerHTML =
+          'CSV cargado: <b>' + escapeHTML(archivo.name) + '</b> · ' +
+          'una tarjeta por fila. Revisa y presiona <b>Ctrl+P</b>.';
+      } catch (err) {
+        alert("No se pudo leer el CSV:\n" + err.message +
+              "\n\nFormato esperado (con encabezado):\nnombre,categoria,texto");
+      }
+    };
+    lector.readAsText(archivo, "UTF-8");
+    evento.target.value = "";   // permite recargar el mismo archivo
+  }
+
+  /* ============================================================
+     5) PLANTILLA CSV DE EJEMPLO (botón "Plantilla CSV")
+     ============================================================ */
+  function descargarPlantilla() {
+    const contenido =
+      "nombre,categoria,texto\r\n" +
+      'María López,Trabajo en Equipo,"Eres un gran compañero, siempre dispuesto a ayudar"\r\n' +
+      "Carlos Ruiz,Actitud Positiva,Tu energía contagia al equipo\r\n" +
+      "Ana Torres,Compromiso,Siempre das la milla extra\r\n";
+    // ﻿ (BOM) para que Excel abra los acentos correctamente
+    const blob = new Blob(["﻿" + contenido], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "plantilla_reconocimientos.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  /* ============================================================
+     6) RENDERIZADO DE LAS TARJETAS
+     ============================================================ */
   function render() {
     const grid = document.getElementById("grid");
     grid.innerHTML = reconocimientos.map(function (r) {
+      const bloqueNombre = r.nombre
+        ? '<div class="nombre"><small>Reconocimiento para</small>' + escapeHTML(r.nombre) + '</div>'
+        : '';
       return (
         '<div class="card">' +
-          '<div class="categoria">' + escapeHTML(r.categoria) + '</div>' +
-          '<div class="titulo">Reconocimiento</div>' +
+          (r.categoria ? '<div class="categoria">' + escapeHTML(r.categoria) + '</div>' : '') +
+          bloqueNombre +
           '<div class="texto">' + escapeHTML(r.texto) + '</div>' +
           '<div class="pie">' +
             '<span class="firma">Sinergy · <b>Soluciones Integrales</b></span>' +
