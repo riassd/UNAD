@@ -74,6 +74,22 @@
   .btn-ghost { background: rgba(255,255,255,.14); color: var(--blanco); }
   #csvInput { display: none; }
 
+  /* Interruptor (toggle) para mostrar/ocultar el nombre */
+  .toggle { display: inline-flex; align-items: center; gap: 8px;
+    color: var(--blanco); font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; }
+  .toggle input { display: none; }
+  .toggle .via {
+    position: relative; width: 40px; height: 22px; border-radius: 22px;
+    background: rgba(255,255,255,.28); transition: background .2s ease;
+  }
+  .toggle .via::after {
+    content: ""; position: absolute; top: 2px; left: 2px;
+    width: 18px; height: 18px; border-radius: 50%; background: var(--blanco);
+    transition: transform .2s ease;
+  }
+  .toggle input:checked + .via { background: var(--naranja); }
+  .toggle input:checked + .via::after { transform: translateX(18px); }
+
   .meta { text-align: center; font-size: 13px; color: var(--gris); padding: 12px 16px 0; }
   .meta b { color: var(--azul); }
 
@@ -150,6 +166,9 @@
     margin-bottom: 8px;
   }
   .card .nombre:empty, .card .para.oculto { display: none; }
+  /* Con el toggle apagado se oculta todo el bloque del nombre */
+  body.sin-nombre .card .para,
+  body.sin-nombre .card .nombre { display: none; }
 
   .card .texto {
     flex: 1; display: flex; align-items: center; justify-content: center;
@@ -211,6 +230,12 @@
       <h1>Reconocimientos <span>Sinergy</span></h1>
     </div>
     <div class="spacer"></div>
+
+    <label class="toggle" title="Mostrar u ocultar el nombre del colaborador">
+      <input type="checkbox" id="toggleNombre" checked onchange="toggleNombre(this)">
+      <span class="via"></span>
+      <span>Mostrar nombre</span>
+    </label>
 
     <label class="btn btn-csv" for="csvInput">📄 Cargar CSV</label>
     <input type="file" id="csvInput" accept=".csv,text/csv" onchange="cargarCSV(event)">
@@ -310,7 +335,12 @@
         const idx = indiceEncabezados(filas[0]);
         let inicio = 1;
         if (idx.nombre < 0 && idx.categoria < 0 && idx.texto < 0) {
-          idx.nombre = 0; idx.categoria = 1; idx.texto = 2; inicio = 0;  // sin encabezado
+          // Sin encabezado reconocido: deducir por número de columnas
+          const cols = filas[0].length;
+          if (cols <= 1)      { idx.texto = 0; }                       // solo frases
+          else if (cols === 2){ idx.categoria = 0; idx.texto = 1; }    // categoría + frase
+          else                { idx.nombre = 0; idx.categoria = 1; idx.texto = 2; }
+          inicio = 0;   // no había encabezado: usar también la primera fila
         }
 
         const datos = [];
@@ -352,6 +382,13 @@
     a.href = url; a.download = "plantilla_reconocimientos.csv";
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  }
+
+  /* ============================================================
+     TOGGLE: mostrar / ocultar el nombre en todas las tarjetas
+     ============================================================ */
+  function toggleNombre(input) {
+    document.body.classList.toggle("sin-nombre", !input.checked);
   }
 
   /* ============================================================
