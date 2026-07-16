@@ -7,23 +7,26 @@
 <style>
   /* ============================================================
      PALETA CORPORATIVA SINERGY
-     Azul    #004581
-     Naranja #F28C00
-     Blanco  #FFFFFF
-     Gris     #666666
+     Azul    #004581   ·  Naranja #F28C00
+     Blanco  #FFFFFF   ·  Gris     #666666
      ============================================================ */
   :root {
-    --azul:    #004581;
-    --naranja: #F28C00;
-    --blanco:  #FFFFFF;
-    --gris:    #666666;
-    --gris-claro: #f2f4f7;
+    --azul:      #004581;
+    --azul-osc:  #003666;
+    --naranja:   #F28C00;
+    --blanco:    #FFFFFF;
+    --gris:      #666666;
+    --gris-txt:  #4a4f55;
+    --gris-claro:#eef1f5;
+
+    /* Logos reales del repositorio (misma carpeta que este HTML) */
+    --logo-blanco: "450x150px-bh.png";   /* versión blanca, para la banda azul */
 
     /* Ajusta cuántas tarjetas quieres por hoja:
        2 columnas x 4 filas = 8 tarjetas
-       2 columnas x 5 filas = 10 tarjetas (reduce el alto de --card-h) */
+       2 columnas x 5 filas = 10 tarjetas (reduce --card-h a ~50mm) */
     --cols: 2;
-    --card-h: 62mm;   /* alto de cada tarjeta al imprimir */
+    --card-h: 64mm;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,84 +35,52 @@
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: var(--gris-claro);
     color: var(--gris);
-    -webkit-print-color-adjust: exact;   /* fuerza colores/degradados al imprimir */
+    -webkit-print-color-adjust: exact;   /* colores/degradados al imprimir */
     print-color-adjust: exact;
   }
 
   /* ============================================================
-     BARRA DE HERRAMIENTAS (solo pantalla, se oculta al imprimir)
+     BARRA DE HERRAMIENTAS (solo pantalla)
      ============================================================ */
   .toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    background: var(--azul);
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    background: linear-gradient(90deg, var(--azul-osc), var(--azul));
     color: var(--blanco);
-    padding: 14px 24px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    padding: 13px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
   }
-  .toolbar h1 {
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: .3px;
-  }
+  .toolbar .brand { display: flex; align-items: center; gap: 12px; }
+  .toolbar .brand img { height: 30px; width: auto; }
+  .toolbar h1 { font-size: 16px; font-weight: 600; letter-spacing: .3px; }
   .toolbar h1 span { color: var(--naranja); }
   .toolbar .spacer { flex: 1; }
-  .toolbar .hint {
-    font-size: 13px;
-    opacity: .85;
-  }
+  .toolbar .hint { font-size: 12.5px; opacity: .85; }
   .toolbar .hint kbd {
-    background: rgba(255,255,255,.18);
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-family: inherit;
+    background: rgba(255,255,255,.18); border-radius: 4px;
+    padding: 2px 6px; font-family: inherit;
   }
 
-  /* Botones de la barra */
   .btn {
-    border: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
+    border: none; font-size: 14px; font-weight: 600;
+    padding: 10px 18px; border-radius: 8px; cursor: pointer;
     transition: transform .1s ease, filter .15s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
   }
   .btn:hover { filter: brightness(1.06); }
   .btn:active { transform: scale(.97); }
-  .btn-print   { background: var(--naranja); color: var(--blanco); }
-  .btn-csv     { background: var(--blanco);  color: var(--azul); }
-  .btn-ghost   { background: rgba(255,255,255,.14); color: var(--blanco); }
-
-  /* input file oculto, activado por su <label class="btn"> */
+  .btn-print { background: var(--naranja); color: var(--blanco); }
+  .btn-csv   { background: var(--blanco);  color: var(--azul); }
+  .btn-ghost { background: rgba(255,255,255,.14); color: var(--blanco); }
   #csvInput { display: none; }
 
-  .meta {
-    text-align: center;
-    font-size: 13px;
-    color: var(--gris);
-    padding: 10px 16px 0;
-  }
+  .meta { text-align: center; font-size: 13px; color: var(--gris); padding: 12px 16px 0; }
   .meta b { color: var(--azul); }
-  .meta .aviso { color: var(--naranja); font-weight: 600; }
 
   /* ============================================================
      GRID DE TARJETAS (pantalla)
      ============================================================ */
-  .page {
-    max-width: 900px;
-    margin: 14px auto 40px;
-    padding: 0 16px;
-  }
+  .page { max-width: 920px; margin: 16px auto 44px; padding: 0 16px; }
   .grid {
     display: grid;
     grid-template-columns: repeat(var(--cols), 1fr);
@@ -117,140 +88,115 @@
   }
 
   /* ============================================================
-     ESTILO DE LA TARJETA (Flashcard corporativa)
+     TARJETA — diseño premium tipo flashcard corporativa
      ============================================================ */
   .card {
     position: relative;
     background: var(--blanco);
-    border: 1px solid #e2e6ea;
-    border-radius: 12px;
-    /* Detalle superior en Azul corporativo */
-    border-top: 8px solid var(--azul);
-    box-shadow: 0 4px 14px rgba(0,0,0,.06);
-    padding: 18px 20px 16px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,69,129,.10);
+    overflow: hidden;
+    display: flex; flex-direction: column;
     min-height: var(--card-h);
+  }
+
+  /* -- Banda superior azul con el logo blanco -- */
+  .card .encabezado {
+    position: relative;
+    background: linear-gradient(115deg, var(--azul-osc) 0%, var(--azul) 60%, #0a5aa0 100%);
+    padding: 12px 18px;
+    display: flex; align-items: center; justify-content: space-between;
     overflow: hidden;
   }
-  /* Acento diagonal sutil en naranja (esquina superior derecha) */
-  .card::after {
-    content: "";
-    position: absolute;
-    top: -30px;
-    right: -30px;
-    width: 70px;
-    height: 70px;
-    background: var(--naranja);
-    opacity: .12;
-    transform: rotate(45deg);
+  /* Gota/acento naranja translúcido dentro de la banda */
+  .card .encabezado::after {
+    content: ""; position: absolute; right: -26px; top: -26px;
+    width: 90px; height: 90px; border-radius: 50%;
+    background: var(--naranja); opacity: .22;
+  }
+  .card .encabezado img.logo {
+    height: 26px; width: auto; position: relative; z-index: 1;
+  }
+  .card .encabezado .sello {
+    position: relative; z-index: 1;
+    color: var(--blanco); font-size: 10px; font-weight: 700;
+    letter-spacing: 1.6px; text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,.45);
+    padding: 4px 9px; border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* -- Cuerpo -- */
+  .card .cuerpo {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 14px 20px 8px; text-align: center;
   }
 
   .card .categoria {
+    align-self: center;
+    background: rgba(242,140,0,.12);
     color: var(--naranja);
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 6px;
+    font-size: 11.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.1px;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 8px;
   }
-  .card .categoria::before {
-    content: "★ ";
-    font-size: 12px;
-  }
+  .card .categoria::before { content: "★ "; }
 
-  /* Nombre del colaborador reconocido */
+  .card .para { font-size: 9.5px; color: var(--gris); letter-spacing: 1px;
+    text-transform: uppercase; opacity: .75; margin-bottom: 1px; }
   .card .nombre {
-    color: var(--azul);
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 2px;
+    color: var(--azul); font-size: 19px; font-weight: 800; line-height: 1.15;
+    margin-bottom: 8px;
   }
-  .card .nombre small {
-    display: block;
-    color: var(--gris);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .6px;
-    text-transform: uppercase;
-    opacity: .7;
-    margin-bottom: 2px;
-  }
-  /* Oculta el bloque de nombre si la fila no trae nombre */
-  .card .nombre:empty { display: none; }
+  .card .nombre:empty, .card .para.oculto { display: none; }
 
   .card .texto {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--gris);
-    font-size: 18px;
-    line-height: 1.35;
-    font-weight: 600;
-    padding: 8px 4px;
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    position: relative;
+    color: var(--gris-txt); font-size: 16px; line-height: 1.4; font-weight: 600;
+    padding: 4px 8px 6px;
+  }
+  /* Comillas decorativas en naranja */
+  .card .texto::before {
+    content: "\201C"; position: absolute; left: 2px; top: -6px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34px; color: var(--naranja); opacity: .35; line-height: 1;
   }
 
-  /* Pie de la tarjeta: firma + logo */
+  /* -- Pie -- */
   .card .pie {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #eceff2;
-    padding-top: 10px;
-    margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 8px 18px 14px;
+    border-top: 1px solid #eef1f5; margin: 0 16px;
+    font-size: 10.5px; color: var(--gris);
   }
-  .card .pie .firma {
-    font-size: 11px;
-    color: var(--gris);
-  }
-  .card .pie .firma b { color: var(--azul); }
-  .card .pie img.logo {
-    height: 34px;
-    width: auto;
-    max-width: 120px;
-    object-fit: contain;
-    font-size: 11px;   /* respaldo de texto si el logo no carga */
-    color: var(--azul);
+  .card .pie .punto { width: 6px; height: 6px; border-radius: 50%; background: var(--naranja); }
+  .card .pie b { color: var(--azul); }
+
+  /* Barra inferior de acento */
+  .card .franja {
+    height: 6px;
+    background: linear-gradient(90deg, var(--azul) 0%, var(--azul) 55%, var(--naranja) 55%, var(--naranja) 100%);
   }
 
   /* ============================================================
-     REGLAS DE IMPRESIÓN  →  Ctrl + P
+     IMPRESIÓN  →  Ctrl + P
      ============================================================ */
   @media print {
-    @page {
-      size: A4;            /* cambia a "letter" si usas tamaño Carta */
-      margin: 10mm;        /* margen de corte de la hoja */
-    }
+    @page { size: A4; margin: 9mm; }   /* cambia "A4" por "letter" si usas Carta */
 
     body { background: var(--blanco); }
     .toolbar, .meta { display: none !important; }
-
-    .page {
-      max-width: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .grid {
-      gap: 6mm;            /* separación entre tarjetas (guía de corte) */
-    }
+    .page { max-width: none; margin: 0; padding: 0; }
+    .grid { gap: 6mm; }
 
     .card {
-      /* EVITA que una tarjeta se parta al cambiar de página */
-      break-inside: avoid;
-      page-break-inside: avoid;
+      break-inside: avoid; page-break-inside: avoid;   /* no cortar tarjetas */
       box-shadow: none;
-      border: 1px dashed #c9ced3;   /* guía de corte tenue */
-      border-top: 8px solid var(--azul);
+      border: 1px solid #d7dde3;
       min-height: var(--card-h);
-      border-radius: 10px;
     }
-
-    /* Refuerza que los colores/acentos se impriman */
-    .card::after { opacity: .14; }
   }
 </style>
 </head>
@@ -258,17 +204,17 @@
 
   <!-- BARRA SUPERIOR (no se imprime) -->
   <div class="toolbar">
-    <h1>Reconocimientos <span>Sinergy</span> · Soluciones Integrales</h1>
+    <div class="brand">
+      <img src="450x150px-bh.png" alt="Sinergy" onerror="this.style.display='none'">
+      <h1>Reconocimientos <span>Sinergy</span></h1>
+    </div>
     <div class="spacer"></div>
 
-    <!-- Cargar CSV: el <label> dispara el <input type=file> oculto -->
     <label class="btn btn-csv" for="csvInput">📄 Cargar CSV</label>
     <input type="file" id="csvInput" accept=".csv,text/csv" onchange="cargarCSV(event)">
-
-    <!-- Plantilla de ejemplo para que sepan el formato -->
     <button class="btn btn-ghost" onclick="descargarPlantilla()">⬇️ Plantilla CSV</button>
 
-    <span class="hint"><kbd>Ctrl</kbd>+<kbd>P</kbd> → Guardar como PDF</span>
+    <span class="hint"><kbd>Ctrl</kbd>+<kbd>P</kbd> → PDF</span>
     <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
   </div>
 
@@ -277,97 +223,82 @@
     <span id="fuente">Mostrando ejemplos. Carga tu CSV para generar todas.</span>
   </p>
 
-  <!-- CONTENEDOR DONDE JS INSERTA LAS TARJETAS -->
   <div class="page">
     <div class="grid" id="grid"></div>
   </div>
 
 <script>
   /* ============================================================
-     1) RUTA DE TU LOGO LOCAL
-        Coloca aquí la ruta de tu archivo (misma carpeta que este HTML).
-        Ej: "logo-sinergy.png"  ó  "img/logo-sinergy.png"
+     LOGOS (archivos reales del repositorio, junto a este HTML)
+       · Banda azul  → versión blanca:  450x150px-bh.png
      ============================================================ */
-  const LOGO = "logo-sinergy.png";
+  const LOGO_BLANCO = "450x150px-bh.png";
 
   /* ============================================================
-     2) DATOS DE EJEMPLO (se muestran hasta que cargues un CSV)
-        Cada objeto = una tarjeta:  { nombre, categoria, texto }
+     DATOS DE EJEMPLO (se muestran hasta cargar un CSV)
+       Cada objeto = una tarjeta:  { nombre, categoria, texto }
      ============================================================ */
   let reconocimientos = [
-    { nombre: "María López",  categoria: "Trabajo en Equipo", texto: "Eres un gran compañero" },
-    { nombre: "Carlos Ruiz",  categoria: "Actitud Positiva",  texto: "Tu energía contagia al equipo" },
-    { nombre: "Ana Torres",   categoria: "Compromiso",        texto: "Siempre das la milla extra" },
+    { nombre: "María López", categoria: "Trabajo en Equipo", texto: "Eres un gran compañero, siempre dispuesto a ayudar" },
+    { nombre: "Carlos Ruiz", categoria: "Actitud Positiva",  texto: "Tu energía contagia al equipo" },
+    { nombre: "Ana Torres",  categoria: "Compromiso",        texto: "Siempre das la milla extra" },
   ];
 
   /* ============================================================
-     3) UTILIDADES
+     UTILIDADES
      ============================================================ */
   function escapeHTML(str) {
     return String(str == null ? "" : str)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  /* Parser de CSV robusto:
-     - Detecta el separador (coma o punto y coma, típico de Excel en español)
-     - Respeta campos entre comillas dobles ("texto, con coma")
-     - Soporta comillas escapadas ("") y saltos de línea dentro de comillas
-     - Ignora un BOM inicial si el archivo lo trae                          */
+  /* Parser CSV robusto: detecta separador (, o ;), respeta comillas,
+     comillas escapadas (""), saltos de línea internos y BOM inicial. */
   function parseCSV(text) {
-    text = text.replace(/^﻿/, "");           // quita BOM
-
-    // Detecta el delimitador mirando la primera línea (fuera de comillas)
+    text = text.replace(/^﻿/, "");
     const primeraLinea = text.split(/\r?\n/)[0] || "";
-    const comas = (primeraLinea.match(/,/g)  || []).length;
-    const puntoyComa = (primeraLinea.match(/;/g) || []).length;
-    const DELIM = puntoyComa > comas ? ";" : ",";
+    const comas = (primeraLinea.match(/,/g) || []).length;
+    const pyc   = (primeraLinea.match(/;/g) || []).length;
+    const DELIM = pyc > comas ? ";" : ",";
 
-    const filas = [];
-    let campo = "", fila = [], enComillas = false;
-
+    const filas = []; let campo = "", fila = [], comillas = false;
     for (let i = 0; i < text.length; i++) {
       const c = text[i];
-      if (enComillas) {
-        if (c === '"') {
-          if (text[i + 1] === '"') { campo += '"'; i++; }  // comilla escapada
-          else enComillas = false;
-        } else campo += c;
+      if (comillas) {
+        if (c === '"') { if (text[i+1] === '"') { campo += '"'; i++; } else comillas = false; }
+        else campo += c;
       } else {
-        if (c === '"') enComillas = true;
+        if (c === '"') comillas = true;
         else if (c === DELIM) { fila.push(campo); campo = ""; }
         else if (c === "\n") { fila.push(campo); filas.push(fila); fila = []; campo = ""; }
         else if (c === "\r") { /* ignora */ }
         else campo += c;
       }
     }
-    // último campo/fila si el archivo no termina en salto de línea
     if (campo.length > 0 || fila.length > 0) { fila.push(campo); filas.push(fila); }
-
-    return filas.filter(f => f.some(v => String(v).trim() !== ""));  // sin filas vacías
+    return filas.filter(f => f.some(v => String(v).trim() !== ""));
   }
 
-  /* Mapea encabezados flexibles a nuestras claves.
-     Acepta variantes con/ sin acento y sinónimos comunes. */
+  /* Mapea encabezados flexibles (con/sin acento y sinónimos) a nuestras claves. */
   function indiceEncabezados(cabecera) {
     const norm = s => String(s).trim().toLowerCase()
-      .normalize("NFD").replace(/[̀-ͯ]/g, "");   // sin acentos
+      .normalize("NFD").replace(/[̀-ͯ]/g, "");
     const idx = { nombre: -1, categoria: -1, texto: -1 };
     cabecera.forEach((h, i) => {
       const k = norm(h);
       if (idx.nombre    < 0 && ["nombre","nombres","colaborador","empleado","name"].includes(k)) idx.nombre = i;
-      if (idx.categoria < 0 && ["categoria","categoría","category","tipo","valor"].includes(k)) idx.categoria = i;
-      if (idx.texto     < 0 && ["texto","frase","mensaje","reconocimiento","message","descripcion","descripción"].includes(k)) idx.texto = i;
+      if (idx.categoria < 0 && ["categoria","category","tipo","valor"].includes(k)) idx.categoria = i;
+      if (idx.texto     < 0 && ["texto","frase","mensaje","reconocimiento","message","descripcion"].includes(k)) idx.texto = i;
     });
     return idx;
   }
 
   /* ============================================================
-     4) CARGA DE CSV (botón "Cargar CSV")
+     CARGA DE CSV
      ============================================================ */
   function cargarCSV(evento) {
     const archivo = evento.target.files && evento.target.files[0];
     if (!archivo) return;
-
     const lector = new FileReader();
     lector.onload = function (e) {
       try {
@@ -375,12 +306,9 @@
         if (filas.length === 0) throw new Error("El archivo está vacío.");
 
         const idx = indiceEncabezados(filas[0]);
-        let inicio = 1;   // asume que la primera fila es el encabezado
-
-        // Si no reconoció ningún encabezado, asume orden: nombre, categoria, texto
+        let inicio = 1;
         if (idx.nombre < 0 && idx.categoria < 0 && idx.texto < 0) {
-          idx.nombre = 0; idx.categoria = 1; idx.texto = 2;
-          inicio = 0;     // no había encabezado, usar también la primera fila
+          idx.nombre = 0; idx.categoria = 1; idx.texto = 2; inicio = 0;  // sin encabezado
         }
 
         const datos = [];
@@ -389,28 +317,26 @@
           const nombre    = idx.nombre    >= 0 ? (f[idx.nombre]    || "").trim() : "";
           const categoria = idx.categoria >= 0 ? (f[idx.categoria] || "").trim() : "";
           const texto     = idx.texto     >= 0 ? (f[idx.texto]     || "").trim() : "";
-          if (!nombre && !categoria && !texto) continue;  // fila vacía
+          if (!nombre && !categoria && !texto) continue;
           datos.push({ nombre, categoria, texto });
         }
-
         if (datos.length === 0) throw new Error("No se encontraron filas con datos.");
 
         reconocimientos = datos;
         render();
         document.getElementById("fuente").innerHTML =
-          'CSV cargado: <b>' + escapeHTML(archivo.name) + '</b> · ' +
-          'una tarjeta por fila. Revisa y presiona <b>Ctrl+P</b>.';
+          'CSV cargado: <b>' + escapeHTML(archivo.name) + '</b> · una tarjeta por fila. Presiona <b>Ctrl+P</b>.';
       } catch (err) {
         alert("No se pudo leer el CSV:\n" + err.message +
               "\n\nFormato esperado (con encabezado):\nnombre,categoria,texto");
       }
     };
     lector.readAsText(archivo, "UTF-8");
-    evento.target.value = "";   // permite recargar el mismo archivo
+    evento.target.value = "";
   }
 
   /* ============================================================
-     5) PLANTILLA CSV DE EJEMPLO (botón "Plantilla CSV")
+     PLANTILLA CSV DE EJEMPLO
      ============================================================ */
   function descargarPlantilla() {
     const contenido =
@@ -418,41 +344,43 @@
       'María López,Trabajo en Equipo,"Eres un gran compañero, siempre dispuesto a ayudar"\r\n' +
       "Carlos Ruiz,Actitud Positiva,Tu energía contagia al equipo\r\n" +
       "Ana Torres,Compromiso,Siempre das la milla extra\r\n";
-    // ﻿ (BOM) para que Excel abra los acentos correctamente
     const blob = new Blob(["﻿" + contenido], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
-    a.download = "plantilla_reconocimientos.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    a.href = url; a.download = "plantilla_reconocimientos.csv";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
 
   /* ============================================================
-     6) RENDERIZADO DE LAS TARJETAS
+     RENDERIZADO DE LAS TARJETAS
      ============================================================ */
   function render() {
     const grid = document.getElementById("grid");
     grid.innerHTML = reconocimientos.map(function (r) {
       const bloqueNombre = r.nombre
-        ? '<div class="nombre"><small>Reconocimiento para</small>' + escapeHTML(r.nombre) + '</div>'
+        ? '<div class="para">Reconocimiento para</div><div class="nombre">' + escapeHTML(r.nombre) + '</div>'
         : '';
       return (
         '<div class="card">' +
-          (r.categoria ? '<div class="categoria">' + escapeHTML(r.categoria) + '</div>' : '') +
-          bloqueNombre +
-          '<div class="texto">' + escapeHTML(r.texto) + '</div>' +
-          '<div class="pie">' +
-            '<span class="firma">Sinergy · <b>Soluciones Integrales</b></span>' +
-            '<img class="logo" src="' + LOGO + '" alt="Sinergy" ' +
-                 'onerror="this.style.display=\'none\'">' +
+          '<div class="encabezado">' +
+            '<img class="logo" src="' + LOGO_BLANCO + '" alt="Sinergy" onerror="this.style.display=\'none\'">' +
+            '<span class="sello">Reconocimiento</span>' +
           '</div>' +
+          '<div class="cuerpo">' +
+            (r.categoria ? '<div class="categoria">' + escapeHTML(r.categoria) + '</div>' : '') +
+            bloqueNombre +
+            '<div class="texto">' + escapeHTML(r.texto) + '</div>' +
+          '</div>' +
+          '<div class="pie">' +
+            '<span class="punto"></span>' +
+            'Sinergy · <b>Soluciones Integrales</b>' +
+            '<span class="punto"></span>' +
+          '</div>' +
+          '<div class="franja"></div>' +
         '</div>'
       );
     }).join("");
-
     document.getElementById("contador").textContent = reconocimientos.length;
   }
 
