@@ -159,11 +159,6 @@
   }
   .card .categoria::before { content: "★ "; }
 
-  .card .para { 
-    font-size: 9.5px; color: var(--gris); letter-spacing: 1px;
-    text-transform: uppercase; opacity: .75; margin-bottom: 1px; 
-  }
-  
   .card .linea-firma {
     border-bottom: 1px solid var(--gris);
     width: 65%;
@@ -426,7 +421,8 @@
     grid.innerHTML = reconocimientos.map(function (r) {
       
       // Creamos el bloque del nombre evaluando si hay datos o si debe ir la línea obligatoria.
-      let bloqueNombre = '<div class="para">Reconocimiento para</div>';
+      // Aquí se eliminó el texto de "Reconocimiento para"
+      let bloqueNombre = '';
       if (r.nombre) {
         bloqueNombre += '<div class="nombre">' + escapeHTML(r.nombre) + '</div>';
         bloqueNombre += '<div class="linea-firma" style="display:none;"></div>';
