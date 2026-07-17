@@ -162,7 +162,8 @@
   .card .linea-firma {
     border-bottom: 1px solid var(--gris);
     width: 65%;
-    margin: 16px auto 10px auto;
+    /* Aumentamos el margen superior (de 16 a 40px) para dejar espacio para escribir el nombre */
+    margin: 40px auto 15px auto;
   }
 
   .card .nombre {
@@ -421,7 +422,6 @@
     grid.innerHTML = reconocimientos.map(function (r) {
       
       // Creamos el bloque del nombre evaluando si hay datos o si debe ir la línea obligatoria.
-      // Aquí se eliminó el texto de "Reconocimiento para"
       let bloqueNombre = '';
       if (r.nombre) {
         bloqueNombre += '<div class="nombre">' + escapeHTML(r.nombre) + '</div>';
