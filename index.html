@@ -171,6 +171,8 @@
   body.sin-nombre .card .nombre { display: none; }
   /* Con el toggle apagado se oculta el chip de categoría */
   body.sin-categoria .card .categoria { display: none; }
+  /* Con el toggle apagado se oculta el pie (firma Sinergy) */
+  body.sin-pie .card .pie { display: none; }
 
   .card .texto {
     flex: 1; display: flex; align-items: center; justify-content: center;
@@ -237,6 +239,12 @@
       <input type="checkbox" id="toggleDatos" checked onchange="toggleDatos(this)">
       <span class="via"></span>
       <span>Mostrar nombre y categoría</span>
+    </label>
+
+    <label class="toggle" title="Mostrar u ocultar el pie (Sinergy · Soluciones Integrales)">
+      <input type="checkbox" id="togglePie" checked onchange="togglePie(this)">
+      <span class="via"></span>
+      <span>Mostrar pie</span>
     </label>
 
     <label class="btn btn-csv" for="csvInput">📄 Cargar CSV</label>
@@ -393,6 +401,10 @@
   function toggleDatos(input) {
     document.body.classList.toggle("sin-nombre", !input.checked);
     document.body.classList.toggle("sin-categoria", !input.checked);
+  }
+  /* Toggle del pie (firma Sinergy · Soluciones Integrales) */
+  function togglePie(input) {
+    document.body.classList.toggle("sin-pie", !input.checked);
   }
 
   /* ============================================================
