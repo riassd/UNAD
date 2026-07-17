@@ -169,6 +169,8 @@
   /* Con el toggle apagado se oculta todo el bloque del nombre */
   body.sin-nombre .card .para,
   body.sin-nombre .card .nombre { display: none; }
+  /* Con el toggle apagado se oculta el chip de categoría */
+  body.sin-categoria .card .categoria { display: none; }
 
   .card .texto {
     flex: 1; display: flex; align-items: center; justify-content: center;
@@ -231,10 +233,10 @@
     </div>
     <div class="spacer"></div>
 
-    <label class="toggle" title="Mostrar u ocultar el nombre del colaborador">
-      <input type="checkbox" id="toggleNombre" checked onchange="toggleNombre(this)">
+    <label class="toggle" title="Mostrar u ocultar el nombre y la categoría">
+      <input type="checkbox" id="toggleDatos" checked onchange="toggleDatos(this)">
       <span class="via"></span>
-      <span>Mostrar nombre</span>
+      <span>Mostrar nombre y categoría</span>
     </label>
 
     <label class="btn btn-csv" for="csvInput">📄 Cargar CSV</label>
@@ -387,8 +389,10 @@
   /* ============================================================
      TOGGLE: mostrar / ocultar el nombre en todas las tarjetas
      ============================================================ */
-  function toggleNombre(input) {
+  /* Un solo toggle controla nombre + categoría a la vez */
+  function toggleDatos(input) {
     document.body.classList.toggle("sin-nombre", !input.checked);
+    document.body.classList.toggle("sin-categoria", !input.checked);
   }
 
   /* ============================================================
